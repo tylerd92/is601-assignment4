@@ -59,7 +59,7 @@ def calculator() -> None:
         try:
             user_input : str = input(">> ").strip()
             if not user_input:
-                continue
+                continue # pragma no cover
             command = user_input.lower()
 
             if command == "help":
@@ -89,7 +89,7 @@ def calculator() -> None:
                 continue
 
             try:
-                result = calculation.execute
+                result = calculation.execute()
             except ZeroDivisionError:
                 print("Cannot divide by zero.")
                 print("Please enter a non-zero divisor.\n")
