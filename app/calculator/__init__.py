@@ -3,6 +3,9 @@ import readline
 from typing import List
 from app.calculation import Calculation, CalculationFactory
 
+# Display help message for the calculator REPL
+# This function provides instructions on how to use the calculator,
+# including the supported operations and special commands.
 def display_help() -> None:
     help_message = """
 Calculator REPL Help
@@ -29,6 +32,11 @@ Examples:
     """
     print(help_message)
 
+"""
+@param history: List of Calculation objects representing the history of calculations
+This function prints the history of calculations performed in the REPL.
+If no calculations have been performed, it informs the user.
+"""
 def display_history(history: List[Calculation]) -> None:
     if not history:
         print("No calculations performed yet.")
@@ -37,6 +45,10 @@ def display_history(history: List[Calculation]) -> None:
         for idx, calculation in enumerate(history, start=1):
             print(f"{idx}. {calculation}")
 
+# Main function for the Professional Calculator REPL
+# This function initializes the REPL, handles user input, performs calculations,
+# and manages the history of calculations.
+# It supports basic arithmetic operations and provides a user-friendly interface.
 def calculator() -> None:
     history: List[Calculation] = []
 
