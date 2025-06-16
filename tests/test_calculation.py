@@ -269,3 +269,23 @@ def test_calculation_execute_parameterized(
         mock_division.assert_called_once_with(a, b)
     
     assert result == expected_result
+
+# Parameterized Tests for String Representation
+
+@pytest.mark.parametrize("calc_type, a, b, expected_str", [
+    ('add', 4.0, 6.0, "AddCalculation: 4.0 Add 6.0 = 10.0"),
+    ('subtract', 7.0, 3.0, "SubtractCalculation: 7.0 Subtract 3.0 = 4.0"),
+    ('multiply', 6.0, 5.0, "MultiplyCalculation: 6.0 Multiply 5.0 = 30.0"),
+    ('divide', 15.0, 3.0, "DivideCalculation: 15.0 Divide 3.0 = 5.0"),
+])
+@patch.object(Operation, 'addition', return_value=10.0)
+@patch.object(Operation, 'subtraction', return_value=4.0)
+@patch.object(Operation, 'multiplication', return_value=30.0)
+@patch.object(Operation, 'division', return_value=5.0)
+def test_calculation_str_parameterized(
+    mock_division, mock_multiplication, mock_subtraction, mock_addition,
+    calc_type, a, b, expected_str
+):
+    calc = CalculationFactory.create_calculation(calc_type, a, b)
+    calc_str = str(calc)
+    assert calc_str == expected_str
