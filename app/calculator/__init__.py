@@ -97,3 +97,6 @@ def calculator() -> None:
         except EOFError:
             print("\nEOF detected. Exiting calculator. Goodbye!")
             sys.exit(0)
+
+if __name__ == "__main__":
+    calculator() # pragma: no cover
